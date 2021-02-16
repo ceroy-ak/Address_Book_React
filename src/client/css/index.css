@@ -1,0 +1,299 @@
+/*Applied Throughout the page*/
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+/*Body*/
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+}
+
+/*The Title*/
+.title {
+  background-color: #3399cc;
+  color: white;
+  box-sizing: border-box;
+  padding: 30px 30px 30px 20px;
+}
+
+.title > h1 {
+  font-size: 55px;
+  font-weight: lighter;
+  font-family: "Century Gothic", Helvetica, sans-serif;
+}
+
+/*Navigation Bar*/
+.navigation {
+  background-color: black;
+  min-height: 35px;
+}
+
+.navigation > button {
+  color: white;
+  background-color: black;
+  border: 0px;
+  font-size: 18px;
+  padding: 8px 10px 8px 20px;
+  font-weight: bold;
+}
+
+.navigation > img {
+  float: right;
+  padding: 5px 25px;
+}
+
+/*Contacts Heading*/
+
+#heading {
+  font-family: "Arial";
+  padding: 30px 40px 20px 20px;
+  font-weight: 800;
+}
+
+/*Contacts List*/
+/*Contact*/
+.contacts-list {
+  width: 30%;
+  float: left;
+  margin-bottom: 100px;
+}
+.contact {
+  border: 1px solid #dbdbdb;
+  margin-left: 20px;
+  padding: 10px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.contact.selected {
+  background-color: #cee7f2;
+}
+
+.contact > .name {
+  font-family: "system-ui";
+  font-weight: 400;
+  padding-bottom: 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.contact > .name:hover {
+  overflow: visible;
+}
+
+.contact > .email {
+  margin-left: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.contact > .email:hover {
+  overflow: visible;
+}
+
+.contact .mobile {
+  margin-left: 10px;
+}
+
+/*Selected Contact Display*/
+
+#contactSelected {
+  width: 60%;
+  float: left;
+  margin-left: 90px;
+}
+
+#selectedName {
+  word-wrap: break-word;
+}
+
+#selectedEdit {
+  background-color: white;
+  border: 0px;
+  font-size: 15px;
+  padding: 0px 30px 0px 5px;
+}
+
+#selectedEdit > img {
+  height: 18px;
+  width: 15px;
+  position: relative;
+  top: 3px;
+}
+
+#selectedDelete {
+  background-color: white;
+  border: 0px;
+  font-size: 15px;
+  padding: 0px 30px 0px 5px;
+}
+
+#selectedDelete > img {
+  height: 25px;
+  width: 15px;
+  position: relative;
+  top: 3px;
+  right: 5px;
+}
+
+#selectedEmail {
+  padding: 15px 0px 20px 0px;
+  word-wrap: break-word;
+}
+
+#selectedWebsite {
+  padding: 25px 0px;
+  word-wrap: break-word;
+}
+
+.selectedAddress {
+  width: 40%;
+
+}
+.selectedAddressLeft{
+  float: left;
+  height: 25vh;
+
+}
+
+.selectedAddressRight{
+  float: left;
+  padding-left: 3px;
+}
+
+.selected-row {
+  width: 100%;
+  max-height: max-content;
+  display: inline-block;
+}
+
+.selected-col-name {
+  float: left;
+  width: 40%;
+}
+
+.selected-col-btn {
+  float: left;
+  width: 60%;
+}
+
+/*Form*/
+
+#form {
+  box-shadow: 0 0 15px 1px;
+  width: 55%;
+  float: left;
+  margin-left: 50px;
+  margin-bottom: 100px;
+  padding: 40px 30px 30px 30px;
+}
+
+#form > label {
+  font-weight: bold;
+  display: block;
+  padding-bottom: 3px;
+  margin-top: 18px;
+}
+
+#form > input {
+  border: 1px solid black;
+  height: 30px;
+  width: 80%;
+  padding: 0px 10px;
+}
+
+#formAddress {
+  border: 1px solid black;
+  height: 80px !important;
+  resize: none;
+  padding: 5px 0px 5px 10px;
+}
+.form-error {
+  border: 1px solid red !important;
+}
+
+#formNameError {
+  color: red;
+}
+#formEmailError {
+  color: red;
+}
+
+#formMobileError {
+  color: red;
+  width: 100%;
+}
+
+#formWebsiteError {
+  color: red;
+}
+
+#formSubmitBtn {
+  background-color: green;
+  color: white;
+  padding: 5px 0px;
+  width: 20% !important;
+  float: right;
+}
+
+#formCancelBtn {
+  background-color: red;
+  color: white;
+  width: 20%;
+  padding: 5px;
+}
+
+/*Form Mobile and Landline*/
+
+.form-row {
+  width: 100%;
+  max-height: max-content;
+  display: inline-block;
+}
+
+.form-col-mob {
+  width: 40%;
+  float: left;
+}
+
+.form-col-landline {
+  width: 50%;
+  float: left;
+  margin-right: 10%;
+}
+#formMobile {
+  border: 1px solid black;
+  height: 30px;
+  width: 80%;
+}
+
+#formLandline {
+  border: 1px solid black;
+  height: 30px;
+  width: 80%;
+}
+
+#formMobileLabel {
+  font-weight: bold;
+  display: block;
+  padding-bottom: 3px;
+  margin-top: 18px;
+}
+
+#formLandlineLabel {
+  font-weight: bold;
+  display: block;
+  padding-bottom: 3px;
+  margin-top: 18px;
+}
