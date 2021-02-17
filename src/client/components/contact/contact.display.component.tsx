@@ -19,7 +19,8 @@ function ContactDisplay({displayData, deleteDispatcher, displayEditForm}:IDispla
         displayEditForm(displayData.id)
     }
     const deleteFunction = () => {
-        deleteDispatcher(displayData.id)
+        if(window.confirm('Are you sure you want to delete it?'))
+            deleteDispatcher(displayData.id)
     }
 
     return (
@@ -47,12 +48,8 @@ function ContactDisplay({displayData, deleteDispatcher, displayEditForm}:IDispla
             <p id="selectedWebsite">Website: {displayData.website}</p>
 
             <div className="selectedAddress">
-                <div className="selectedAddressLeft">
-                    <p>Address:</p>
-                </div>
-                <div className="selectedAddressRight">
-                    <p>{displayData.address}</p>
-                </div>
+                <p className="selectedAddressLeft">Address:</p>
+                <p className="selectedAddressRight">{displayData.address}</p>
             </div>
 
         </div>

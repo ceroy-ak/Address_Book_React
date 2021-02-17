@@ -20,7 +20,7 @@ function Contact({value}:IContactProp) {
 
     return (
         <div className={`contact ${(value.id === contactId)?'selected' : ''}`} onClick={onClick}>
-            <h1 className="name">{value.name}</h1>
+            <h1 className="name">{value.name}<span className="tooltiptext">{value.name}</span></h1>
             <p className="email">{value.email}</p>
             <p className="mobile">{value.mobile}</p>
         </div>

@@ -69,6 +69,7 @@ function ContactDataForm({contactId}:IContactDataFormProp) {
     //On Submit of the form
     function onSubmit(data: IContactForm) {
         
+        
         const temp:IContact = {
             id: defaultValues.id,
             address: data.address,
@@ -78,7 +79,7 @@ function ContactDataForm({contactId}:IContactDataFormProp) {
             name: data.name,
             website: data.website
         }
-
+        
         //If operation is update then the defaultvalues will change
         if (actionType === ActionEnum.Update) {
             dispatch(updateContact(temp))

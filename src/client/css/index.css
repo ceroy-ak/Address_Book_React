@@ -73,6 +73,7 @@ input[type="submit"] {
   padding: 10px;
   background-color: white;
   cursor: pointer;
+  position: relative;
 }
 
 .contact.selected {
@@ -88,8 +89,23 @@ input[type="submit"] {
   overflow: hidden;
 }
 
-.contact > .name:hover {
-  overflow: visible;
+.tooltiptext{
+  position:absolute;
+  visibility: hidden;
+  width: min-content;
+  font-size: 15px;
+  background-color: rgb(141, 136, 136);
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 1;
+  left: 100%;
+  top:20px;
+}
+
+.contact > .name:hover > span {
+  visibility: visible;
 }
 
 .contact > .email {
@@ -157,20 +173,24 @@ input[type="submit"] {
   word-wrap: break-word;
 }
 
+/*Display Address Start*/
 .selectedAddress {
   width: 40%;
 
 }
 .selectedAddressLeft{
   float: left;
-  height: 25vh;
+  height: 50vh;
+  margin-right: 4px;
 
 }
 
 .selectedAddressRight{
-  float: left;
-  padding-left: 3px;
+  white-space: break-spaces;
+  word-break: break-all;
 }
+
+/**/
 
 .selected-row {
   width: 100%;
