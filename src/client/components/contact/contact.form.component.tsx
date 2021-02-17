@@ -1,7 +1,10 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import IClient from '../../common/interfaces/contact.interface'
+import IContact from '../../common/interfaces/contact.interface'
 import { v4 as uuidV4 } from 'uuid'
+import {useDispatch, useSelector} from 'react-redux'
+import {displayEmpty, addContact, updateContact} from '../../common/services/redux/contact.actions'
+import IState from '../../common/interfaces/contact.state.interface'
 
 
 interface IContactDataFormProp{
@@ -11,7 +14,7 @@ interface IContactDataFormProp{
 function ContactDataForm({contactId}:IContactDataFormProp) {
 
     //Interface for the Form
-    interface IClientForm {
+    interface IContactForm {
         name: string,
         email: string,
         mobile: string,
@@ -20,13 +23,12 @@ function ContactDataForm({contactId}:IContactDataFormProp) {
         address: string
     }
 
-
     //The actionType and its enum defines which type of action is happening with this form
     enum ActionEnum { Add, Update };
     const actionType = (contactId === undefined) ? ActionEnum.Add : ActionEnum.Update;
 
     //Defaultvalue initialized
-    let defaultValues: IClient = {
+    let defaultValues: IContact = {
         id: uuidV4(),
         address: "",
         email: "",
@@ -36,9 +38,15 @@ function ContactDataForm({contactId}:IContactDataFormProp) {
         website: ""
     }
 
+    //Get the state using useSelector
+    const oldData = useSelector((state:IState)=>state.data)
+    //If operation is Update then fill in the default value
+    if(actionType === ActionEnum.Update){
+        defaultValues = oldData.filter((value)=> value.id === contactId)[0]
+    }
 
     //useForm hook from react-hook-form
-    const { register, handleSubmit, errors } = useForm<IClientForm>({
+    const { register, handleSubmit, errors } = useForm<IContactForm>({
         mode: "onChange",
         defaultValues: {
             name: defaultValues.name,
@@ -50,20 +58,33 @@ function ContactDataForm({contactId}:IContactDataFormProp) {
         }
     });
 
+    //React Redux hook to dispatch actions
+    const dispatch = useDispatch()
 
     //When Cancel Button is clicked 
     const cancelBtn = () => {
-        console.log('Cancel Button Clicked')
+        dispatch(displayEmpty())
     }
 
     //On Submit of the form
-    function onSubmit(data: IClientForm) {
-        console.log(data);
+    function onSubmit(data: IContactForm) {
+        
+        const temp:IContact = {
+            id: defaultValues.id,
+            address: data.address,
+            email: data.email,
+            landline: data.landline,
+            mobile: data.mobile,
+            name: data.name,
+            website: data.website
+        }
+
         //If operation is update then the defaultvalues will change
         if (actionType === ActionEnum.Update) {
+            dispatch(updateContact(temp))
 
         }else if(actionType === ActionEnum.Add){
-
+            dispatch(addContact(temp))
         }else{
             alert('Something Went Wrong')
         }

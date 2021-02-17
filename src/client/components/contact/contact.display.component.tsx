@@ -1,17 +1,25 @@
 import React from 'react'
-import dummyContactDataList from '../../common/services/client.dummyData'
 import edit_icon from '../../res/Edit-icon.png'
 import delete_icon from '../../res/delete1.png'
+import {connect} from 'react-redux'
+import IState from '../../common/interfaces/contact.state.interface'
+import IContact from '../../common/interfaces/contact.interface'
+import {deleteContact, displayEditForm} from '../../common/services/redux/contact.actions'
 
-function ContactDisplay() {
 
-    const displayData = dummyContactDataList[0];
+interface IDisplayDataProp{
+    displayData:IContact
+    deleteDispatcher: Function
+    displayEditForm: Function
+}
+
+function ContactDisplay({displayData, deleteDispatcher, displayEditForm}:IDisplayDataProp) {
     
     const editFunction = () =>{
-        console.log("Edit Called")
+        displayEditForm(displayData.id)
     }
     const deleteFunction = () => {
-        console.log("Delete Called")
+        deleteDispatcher(displayData.id)
     }
 
     return (
@@ -51,4 +59,23 @@ function ContactDisplay() {
     )
 }
 
-export default ContactDisplay
+const mapStateToProps = (state:IState) =>{
+    return {
+        displayData: state.data.filter((value)=>{
+            if(value.id === state.contactId)
+                return true;
+            else return false;
+        })[0] 
+    }
+}
+
+const mapDispatchToProps = (dispatch:any)=>{
+    const deleteDispatcher = (contactId:string) => dispatch(deleteContact(contactId))
+    const displayEditFormDispatcher = (contactId:string) => dispatch(displayEditForm(contactId))
+
+    return {
+        deleteDispatcher: deleteDispatcher,
+        displayEditForm: displayEditFormDispatcher
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(ContactDisplay)

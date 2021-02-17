@@ -5,33 +5,35 @@ import ContactDisplay from '../../components/contact/contact.display.component'
 import ContactList from '../../components/contact/contact.list.component'
 import ContactDataForm from '../../components/contact/contact.form.component'
 import DisplayTypeEnum from '../../common/interfaces/contactDisplay.enum'
-
-function App() {
-
-    
-    let contactId:(string | undefined) = undefined
-    let displayType:DisplayTypeEnum = DisplayTypeEnum.Empty
+import {connect } from 'react-redux'
+import IState from '../interfaces/contact.state.interface'
 
 
-    function displayTypeMethod(type:DisplayTypeEnum, id:(string|undefined)=undefined):JSX.Element{
-        if(type === DisplayTypeEnum.Empty){
+interface IAppProp{
+    contactId: (string|undefined)
+    displayType: DisplayTypeEnum
+}
+function App({contactId, displayType}:IAppProp) {
+
+    function displayTypeMethod(type: DisplayTypeEnum, id: (string | undefined) = undefined): JSX.Element {
+        if (type === DisplayTypeEnum.Empty) {
             return <></>
-        }else if(type === DisplayTypeEnum.SelectedContact){
-            if(id === undefined){
+        } else if (type === DisplayTypeEnum.SelectedContact) {
+            if (id === undefined) {
                 return <h1>Something Went Wrong</h1>
-            }else{
+            } else {
                 return <ContactDisplay />
             }
-        }else if(type === DisplayTypeEnum.EditForm){
-            if(id === undefined){
+        } else if (type === DisplayTypeEnum.EditForm) {
+            if (id === undefined) {
                 return <h1>Something Went Wrong</h1>
-            }else{
-                return <ContactDataForm contactId={id}/>
+            } else {
+                return <ContactDataForm contactId={id} />
             }
-        }else if(type === DisplayTypeEnum.AddForm){
-            return <ContactDataForm contactId={undefined}/>
+        } else if (type === DisplayTypeEnum.AddForm) {
+            return <ContactDataForm contactId={contactId} />
         }
-        else{
+        else {
             return <h1>Something Went Wrong</h1>
         }
     }
@@ -39,15 +41,22 @@ function App() {
     return (
         <>
             <header>
-            <Title />
-            <Navigation />
+                <Title />
+                <Navigation />
             </header>
             <main>
-                <ContactList />
-                {displayTypeMethod(displayType, contactId)}
+                    <ContactList />
+                    {displayTypeMethod(displayType, contactId)}
             </main>
         </>
     )
 }
 
-export default App
+const mapStateToProp = (state:IState) =>(
+    {
+        contactId: state.contactId,
+        displayType: state.displayType
+    }
+)
+
+export default connect(mapStateToProp)(App)
